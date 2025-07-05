@@ -13,7 +13,7 @@ const ProjectsSection = () => {
       : projects.filter(p => p.category === selectedCategory);
 
   return (
-    <section id="projects" className="py-24 px-4 bg-gradient-to-b from-blue-50 to-white">
+    <section id="projects" className="py-24 bg-blue-100">
       <div className="max-w-7xl mx-auto">
         {/* Section Heading */}
         <motion.div
@@ -57,7 +57,7 @@ const ProjectsSection = () => {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: index * 0.15 }}
-              className="bg-blue-100 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-transform hover:scale-[1.02] cursor-pointer group border border-blue-200"
+              className="bg-blue-200 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-transform hover:scale-[1.02] cursor-pointer group border border-blue-200"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -107,7 +107,7 @@ const ProjectsSection = () => {
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 bg-blue-200 text-blue-700 rounded-full text-sm"
+                      className="px-3 py-1 bg-blue-300 text-blue-700 rounded-full text-sm"
                     >
                       {tech}
                     </span>

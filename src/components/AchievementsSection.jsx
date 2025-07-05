@@ -16,7 +16,7 @@ const achievements = [
 
 const AchievementsSection = () => {
   return (
-    <section id="achievements" className="py-24 bg-gradient-to-b from-blue-50 to-white">
+    <section id="achievements" className="py-24 bg-blue-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,7 +46,7 @@ const AchievementsSection = () => {
               <div className="absolute -left-4 top-1.5 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-md">
                 <Trophy size={18} />
               </div>
-              <div className="bg-blue-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-blue-200 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <h3 className="text-xl font-semibold text-blue-400">
                   {item.title}
                 </h3>

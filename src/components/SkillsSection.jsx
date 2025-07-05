@@ -61,7 +61,7 @@ const SkillsSection = () => {
   };
 
   return (
-    <section id="skills" className="py-24 bg-gradient-to-b from-blue-50 to-white">
+    <section id="skills" className="py-24 bg-blue-100">
       <div className="max-w-6xl mx-auto">
         {/* Section Title */}
         <motion.div
@@ -75,7 +75,7 @@ const SkillsSection = () => {
         </motion.div>
 
         {/* Skills Box */}
-        <div className="rounded-2xl shadow-xl bg-blue-100 p-10 border border-blue-200">
+        <div className="rounded-2xl shadow-xl bg-blue-200 p-10 border border-blue-200">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
             {Object.entries(skills).map(([category, items]) => (
               <div key={category}>
@@ -89,7 +89,7 @@ const SkillsSection = () => {
                       whileInView="visible"
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: i * 0.1 }}
-                      className="flex items-center gap-2 text-blue-800 px-5 py-2 bg-blue-200 rounded-full text-sm border border-blue-300 hover:scale-105 transition-transform shadow-sm"
+                      className="flex items-center gap-2 text-blue-800 px-5 py-2 bg-blue-300 rounded-full text-sm border border-blue-300 hover:scale-105 transition-transform shadow-sm"
                     >
                       <span className="text-lg">{skill.icon}</span>
                       <span>{skill.name}</span>

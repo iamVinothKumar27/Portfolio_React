@@ -37,7 +37,7 @@ const ExperienceSection = () => {
   return (
     <section
       id="experience"
-      className="py-24 bg-gradient-to-b from-blue-50 to-white"
+      className="py-24 bg-blue-100"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -63,7 +63,7 @@ const ExperienceSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="bg-blue-100 shadow-xl rounded-2xl p-8 transition hover:scale-[1.01]"
+              className="bg-blue-200 shadow-xl rounded-2xl p-8 transition hover:scale-[1.01]"
             >
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-4">
                 <div>
