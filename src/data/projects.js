@@ -122,7 +122,7 @@ const projects = [
     image: "public/resized_news_logo.png",
     technologies: ["Android Studio", "Kotlin", "News API", "Retrofit", "Jetpack Compose", "Material 3"],
     githubUrl: "https://github.com/iamVinothKumar27/News-App",
-    category: "Mobile Application"
+    category: "Mobile App"
   }
   
   
