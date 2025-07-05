@@ -32,8 +32,11 @@ const Navbar = () => {
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    setIsOpen(false);
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 300); // Delay to allow smooth scroll before closing
   };
+  
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md p-4 border-b border-blue-100">
