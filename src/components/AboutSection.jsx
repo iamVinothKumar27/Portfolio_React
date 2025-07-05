@@ -126,7 +126,7 @@ const AboutSection = () => {
             <div className="aspect-square rounded-2xl bg-gradient-to-br from-blue-400 to-white p-4 flex items-center justify-center shadow-lg">
               <div className="w-full h-full rounded-xl overflow-hidden shadow-lg">
                 <img
-                  src="src/assets/vin.jpeg"
+                  src="/vin.jpeg"
                   alt="Your Portrait"
                   className="w-full h-full object-cover"
                 />
