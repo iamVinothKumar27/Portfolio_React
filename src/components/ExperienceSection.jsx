@@ -5,7 +5,7 @@ const experiences = [
   {
     position: "Full Stack Developer",
     company: "Freelancer.com",
-    logo: "src/assets/freelancer.png",
+    logo: "/freelancer.png",
     duration: "June 2025 – Present",
     description:
       "Working with international clients to deliver full-stack solutions, integrating frontend design with scalable backend and database systems. Focused on performance, responsiveness, and clean UX across web platforms.",
@@ -14,7 +14,7 @@ const experiences = [
   {
     position: "Full Stack Developer",
     company: "TCE HR Conclave 2025",
-    logo: "src/assets/tce.jpeg",
+    logo: "/tce.jpeg",
     duration: "Apr 2025 – Present",
     description:
       "Developed and deployed the official event site for the “National Innovation Conclave 2025” using ReactJS, Tailwind CSS, and Firebase. Included speaker bios, schedules, and registration.",
@@ -24,7 +24,7 @@ const experiences = [
   {
     position: "Frontend Developer",
     company: "STAR Blind Welfare Trust",
-    logo: "src/assets/logo.png",
+    logo: "/logo.png",
     duration: "Jan 2025 – Feb 2025",
     description:
       "Created and launched a responsive website to highlight the services and activities of the STAR Blind Welfare Trust. Implemented accessible design and contact forms to support visually impaired individuals.",
