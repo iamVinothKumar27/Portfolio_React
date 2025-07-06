@@ -81,7 +81,7 @@ const projects = [
     image: "/logo.png",
     technologies: ["HTML", "CSS", "Bootstrap", "JavaScript", "GitHub Pages"],
     liveUrl: "https://sbwtrust.org/",
-    githubUrl: "https://github.com/iamVinothKumar27/sbwtt",
+    githubUrl: "https://github.com/iamVinothKumar27/sbwt",
     category: "Web App"
   },
   {
