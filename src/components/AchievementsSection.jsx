@@ -34,27 +34,28 @@ const AchievementsSection = () => {
         </motion.div>
 
         <div className="relative border-l-4 border-blue-400 pl-6 space-y-12">
-          {achievements.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative cursor-pointer bg-white"
-            >
-              <div className="absolute -left-4 top-1.5 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-md">
-                <Trophy size={18} />
-              </div>
-              <div className="bg-blue-200 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <h3 className="text-xl font-semibold text-blue-400">
-                  {item.title}
-                </h3>
-                <p className="text-md text-gray-800">{item.subtitle}</p>
-                <p className="text-sm text-gray-600 mt-1">{item.description}</p>
-              </div>
-            </motion.div>
-          ))}
+        {achievements.map((item, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+          className="relative cursor-pointer"
+        >
+          <div className="absolute -left-4 top-1.5 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-md">
+            <Trophy size={18} />
+          </div>
+          <div className="bg-blue-200 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <h3 className="text-xl font-semibold text-blue-400">
+              {item.title}
+            </h3>
+            <p className="text-md text-gray-800">{item.subtitle}</p>
+            <p className="text-sm text-gray-600 mt-1">{item.description}</p>
+          </div>
+        </motion.div>
+      ))}
+
         </div>
       </div>
     </section>
