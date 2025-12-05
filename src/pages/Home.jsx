@@ -7,6 +7,8 @@ import ProjectsSection from '../components/ProjectsSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import AchievementsSection from '../components/AchievementsSection';
+import LeetCodeSection from '../components/LeetCodeSection';
+import GitHubSection from "../components/GitHubSection";
 const Home = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -14,8 +16,10 @@ const Home = () => {
       <HeroSection />
       <AboutSection />
       <SkillsSection />
+      <LeetCodeSection />
       <ExperienceSection />
       <ProjectsSection />
+      <GitHubSection />
       <AchievementsSection/>
       <ContactSection />
       <Footer />

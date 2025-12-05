@@ -13,13 +13,13 @@ const experiences = [
   },
   {
     position: "Full Stack Developer",
-    company: "TCE HR Conclave 2025",
+    company: "TCE APPS",
     logo: "/tce.jpeg",
     duration: "Apr 2025 – Present",
     description:
-      "Developed and deployed the official event site for the “National Innovation Conclave 2025” using ReactJS, Tailwind CSS, and Firebase. Included speaker bios, schedules, and registration.",
+      "Developed and deployed the official apps for our college using ReactJS, Tailwind CSS, and Firebase. Included speaker bios, schedules, and registration.",
     technologies: ["ReactJS", "Firebase", "Tailwind CSS"],
-    link: "https://conclave.gokulcb.com",
+    link: "https://tceapps.in",
   },
   {
     position: "Frontend Developer",

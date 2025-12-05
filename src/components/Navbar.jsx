@@ -8,9 +8,11 @@ const navItems = [
   { id: 'skills', label: 'Skills' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
+  { id: "github", label: "GitHub" },
   { id: 'achievements', label: 'Achievements' },
   { id: 'contact', label: 'Contact' },
 ];
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

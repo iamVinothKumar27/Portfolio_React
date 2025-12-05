@@ -10,6 +10,7 @@ const projects = [
     githubUrl: "https://github.com/iamVinothKumar27/Drowsiness",
     category: "Prototype"
   },
+
   {
     id: "2",
     title: "Facial Emotion Detection Using Deep Learning",
@@ -20,7 +21,7 @@ const projects = [
     githubUrl: "https://github.com/iamVinothKumar27/Face_Emotion_Detection",
     category: "Prototype"
   },
-  
+
   {
     id: "3",
     title: "AI-Powered Recommendation System",
@@ -32,6 +33,7 @@ const projects = [
     githubUrl: "https://github.com/iamVinothKumar27/AI_Recommendation",
     category: "Web App"
   },
+  
   {
     id: "4",
     title: "E-Learning Website",
