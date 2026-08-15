@@ -1,12 +1,43 @@
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { ChevronDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { Typewriter } from 'react-simple-typewriter';
 
 const HeroSection = () => {
   const roles = ['Full Stack Developer', 'Mobile Application Developer', 'Freelancer'];
 
+  const sectionRef = useRef(null);
+
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const glowSpring = { damping: 30, stiffness: 90, mass: 0.6 };
+  const trailSpring = { damping: 40, stiffness: 50, mass: 1 };
+  const glowX = useSpring(cursorX, glowSpring);
+  const glowY = useSpring(cursorY, glowSpring);
+  const trailX = useSpring(cursorX, trailSpring);
+  const trailY = useSpring(cursorY, trailSpring);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || window.matchMedia('(pointer: coarse)').matches) return;
+
+    const rect = el.getBoundingClientRect();
+    cursorX.set(rect.width / 2);
+    cursorY.set(rect.height / 2);
+
+    const handleMove = (e) => {
+      const bounds = el.getBoundingClientRect();
+      cursorX.set(e.clientX - bounds.left);
+      cursorY.set(e.clientY - bounds.top);
+    };
+
+    el.addEventListener('mousemove', handleMove);
+    return () => el.removeEventListener('mousemove', handleMove);
+  }, [cursorX, cursorY]);
+
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-24 pb-16"
     >
@@ -14,6 +45,16 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_60%_60%_at_50%_30%,black,transparent)]" />
       <div className="pointer-events-none absolute -top-40 left-1/2 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-primary/25 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-80 w-80 rounded-full bg-accent/20 blur-[110px]" />
+
+      {/* Cursor-reactive glow */}
+      <motion.div
+        className="pointer-events-none absolute h-[26rem] w-[26rem] rounded-full bg-primary-light/25 blur-[100px] mix-blend-screen"
+        style={{ left: glowX, top: glowY, translateX: '-50%', translateY: '-50%' }}
+      />
+      <motion.div
+        className="pointer-events-none absolute h-64 w-64 rounded-full bg-accent-2/20 blur-[90px] mix-blend-screen"
+        style={{ left: trailX, top: trailY, translateX: '-50%', translateY: '-50%' }}
+      />
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div

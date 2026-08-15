@@ -1,13 +1,46 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import projects from '../data/projects';
 
 const ProjectsSection = () => {
   const [selectedCategory, setSelectedCategory] = useState('Web App');
   const categories = ['Web App', 'Prototype', 'Mobile App'];
+  const sliderRef = useRef(null);
+  const isHoveringRef = useRef(false);
 
   const filteredProjects = projects.filter((p) => p.category === selectedCategory);
+  const showArrows = filteredProjects.length > 3;
+
+  useEffect(() => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollTo({ left: 0 });
+    }
+  }, [selectedCategory]);
+
+  const scrollByPage = (direction) => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+    slider.scrollBy({ left: direction * slider.clientWidth, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    if (!showArrows) return;
+
+    const interval = setInterval(() => {
+      const slider = sliderRef.current;
+      if (!slider || isHoveringRef.current) return;
+
+      const { scrollLeft, scrollWidth, clientWidth } = slider;
+      if (scrollLeft + clientWidth >= scrollWidth - 10) {
+        slider.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        slider.scrollBy({ left: clientWidth, behavior: 'smooth' });
+      }
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [selectedCategory, showArrows]);
 
   return (
     <section id="projects" className="py-24 bg-surface/40">
@@ -47,15 +80,43 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        {/* Project Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Project Slider */}
+        <div className="relative">
+          {showArrows && (
+            <div className="flex justify-end gap-3 mb-5">
+              <button
+                type="button"
+                onClick={() => scrollByPage(-1)}
+                aria-label="Previous projects"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-surface-2 border border-border text-foreground hover:border-border-strong hover:text-primary shadow-md cursor-pointer transition-colors"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollByPage(1)}
+                aria-label="Next projects"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-surface-2 border border-border text-foreground hover:border-border-strong hover:text-primary shadow-md cursor-pointer transition-colors"
+              >
+                <ChevronRight size={18} />
+              </button>
+            </div>
+          )}
+
+          <div
+            ref={sliderRef}
+            onMouseEnter={() => (isHoveringRef.current = true)}
+            onMouseLeave={() => (isHoveringRef.current = false)}
+            className="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          >
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
+              data-project-card
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: index * 0.08 }}
-              className="card-surface rounded-2xl overflow-hidden hover:border-border-strong hover:-translate-y-1 transition-all duration-300 group"
+              className="card-surface rounded-2xl overflow-hidden hover:border-border-strong hover:-translate-y-1 transition-all duration-300 group flex-none w-[85%] sm:w-[46%] lg:w-[31%] snap-start"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -114,6 +175,7 @@ const ProjectsSection = () => {
               </div>
             </motion.div>
           ))}
+          </div>
         </div>
       </div>
     </section>

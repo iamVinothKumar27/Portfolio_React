@@ -4,7 +4,7 @@ import { Briefcase, ExternalLink } from 'lucide-react';
 const workExperience = {
   position: 'Associate Software Engineer',
   company: 'Accenture',
-  logo: '/accenture.jpg',
+  logo: '/Accenture-Logo.png',
   duration: 'July 2026 – Present',
 };
 
@@ -68,15 +68,18 @@ const ExperienceSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative card-surface rounded-2xl p-8 border border-primary/30 bg-gradient-to-br from-primary/10 to-transparent hover:border-primary/50 transition-colors"
+            className="group relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-surface-2/60 to-transparent p-8 shadow-lg shadow-primary/5 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10"
           >
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div className="flex items-center gap-4">
-                <span className="h-14 w-14 rounded-xl bg-white flex items-center justify-center overflow-hidden shrink-0 shadow-md">
+            {/* decorative glow */}
+            <div className="pointer-events-none absolute -top-20 -right-20 h-56 w-56 rounded-full bg-primary/20 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
+
+            <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div className="flex items-center gap-5">
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl">
                   <img
                     src={workExperience.logo}
                     alt={`${workExperience.company} logo`}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain"
                   />
                 </span>
                 <div>
@@ -87,11 +90,15 @@ const ExperienceSection = () => {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 text-sm text-muted">
-                  <Briefcase className="w-4 h-4" />
+                <div className="flex items-center gap-2 rounded-full border border-border bg-surface-2/60 px-3 py-1.5 text-sm text-muted">
+                  <Briefcase className="h-4 w-4" />
                   {workExperience.duration}
                 </div>
-                <span className="inline-flex items-center rounded-full bg-green-500/10 text-green-400 px-3 py-1 text-xs font-medium">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-green-500/10 px-3 py-1.5 text-xs font-medium text-green-400">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+                  </span>
                   Current
                 </span>
               </div>

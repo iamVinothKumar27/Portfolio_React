@@ -4,12 +4,21 @@ import {
   GraduationCap,
   Briefcase,
   Users,
+  MapPin,
+  Sparkles,
+  CircleCheck,
 } from 'lucide-react';
 
 const AboutSection = () => {
   const stats = [
     { label: 'Internships', value: '3', icon: <Briefcase size={24} /> },
     { label: 'Hackathons', value: '5', icon: <Users size={24} /> },
+  ];
+
+  const highlights = [
+    { label: 'Based in Tamil Nadu, India', icon: <MapPin size={16} /> },
+    { label: 'Open to collaborations', icon: <CircleCheck size={16} /> },
+    { label: 'AI, ML & Web Development', icon: <Sparkles size={16} /> },
   ];
 
   const education = [
@@ -114,7 +123,7 @@ const AboutSection = () => {
             </div>
           </motion.div>
 
-          {/* Right Side with Personal Photo */}
+          {/* Right Side with Code-Style Profile Card */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -123,13 +132,73 @@ const AboutSection = () => {
             className="relative"
           >
             <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/30 to-accent/20 blur-2xl" />
-            <div className="relative aspect-square rounded-2xl bg-gradient-to-br from-primary/40 to-accent/30 p-[2px] shadow-xl">
-              <div className="w-full h-full rounded-2xl overflow-hidden bg-surface">
-                <img
-                  src="/vin.jpeg"
-                  alt="Vinoth Kumar T S portrait"
-                  className="w-full h-full object-cover"
-                />
+
+            <div className="relative rounded-2xl bg-gradient-to-br from-primary/40 to-accent/30 p-[2px] shadow-xl">
+              <div className="rounded-2xl overflow-hidden bg-surface">
+                {/* Window chrome */}
+                <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-surface-2/60">
+                  <span className="w-3 h-3 rounded-full bg-red-400/70" />
+                  <span className="w-3 h-3 rounded-full bg-yellow-400/70" />
+                  <span className="w-3 h-3 rounded-full bg-green-400/70" />
+                  <span className="ml-3 text-xs text-muted font-mono">about.js</span>
+                </div>
+
+                {/* Code content */}
+                <pre className="px-6 py-6 text-sm md:text-[15px] leading-relaxed font-mono overflow-x-auto">
+                  <code>
+                    <span className="text-muted">{'const'}</span>{' '}
+                    <span className="text-primary-light">vinoth</span>{' '}
+                    <span className="text-muted">{'= {'}</span>
+                    {'\n'}
+                    {'  '}
+                    <span className="text-accent-2">role</span>
+                    <span className="text-muted">:</span>{' '}
+                    <span className="text-accent">'Associate Software Engineer'</span>
+                    <span className="text-muted">,</span>
+                    {'\n'}
+                    {'  '}
+                    <span className="text-accent-2">company</span>
+                    <span className="text-muted">:</span>{' '}
+                    <span className="text-accent">'Accenture'</span>
+                    <span className="text-muted">,</span>
+                    {'\n'}
+                    {'  '}
+                    <span className="text-accent-2">focus</span>
+                    <span className="text-muted">:</span>{' '}
+                    <span className="text-muted">{'['}</span>
+                    <span className="text-accent">'AI'</span>
+                    <span className="text-muted">,</span>{' '}
+                    <span className="text-accent">'ML'</span>
+                    <span className="text-muted">,</span>{' '}
+                    <span className="text-accent">'Web Dev'</span>
+                    <span className="text-muted">{']'}</span>
+                    <span className="text-muted">,</span>
+                    {'\n'}
+                    {'  '}
+                    <span className="text-accent-2">drivenBy</span>
+                    <span className="text-muted">:</span>{' '}
+                    <span className="text-accent">'curiosity & clean design'</span>
+                    <span className="text-muted">,</span>
+                    {'\n'}
+                    {'  '}
+                    <span className="text-accent-2">availability</span>
+                    <span className="text-muted">:</span>{' '}
+                    <span className="text-primary-light">true</span>
+                    <span className="text-muted">,</span>
+                    {'\n'}
+                    <span className="text-muted">{'};'}</span>
+                  </code>
+                </pre>
+
+                {/* Highlights */}
+                <div className="px-6 pb-6 pt-1 space-y-3 border-t border-border">
+                  {highlights.map((item, index) => (
+                    <div key={index} className="flex items-center gap-3 pt-3 text-sm text-muted">
+                      <span className="text-primary-light">{item.icon}</span>
+                      {item.label}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
