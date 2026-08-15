@@ -1,41 +1,32 @@
 import { motion } from 'framer-motion';
 import {
   User,
-  Code,
   GraduationCap,
   Briefcase,
-  Layers3,
   Users,
-  BookOpen 
 } from 'lucide-react';
-
 
 const AboutSection = () => {
   const stats = [
-    { label: "Internships", value: "3", icon: <Briefcase size={28} /> },
-    { label: "Projects", value: "11", icon: <Layers3 size={28} /> },
-    { label: "Hackathons", value: "5", icon: <Users size={28} /> },
-    { label: "Publications", value: "1", icon: <BookOpen size={28} /> } // changed icon
+    { label: 'Internships', value: '3', icon: <Briefcase size={24} /> },
+    { label: 'Hackathons', value: '5', icon: <Users size={24} /> },
   ];
-
-  
 
   const education = [
     {
-      degree: "B.Tech in Information Technology",
-      institution: "Thiagarajar College of Engineering",
-      year: "2022 - 2026"
+      degree: 'B.Tech in Information Technology',
+      institution: 'Thiagarajar College of Engineering',
+      year: '2022 - 2026',
     },
     {
-      degree: "Higher Secondary Education",
-      institution: "CEOA Matriculation Higher Secondary School",
-      year: "2020 - 2022"
-    }
+      degree: 'Higher Secondary Education',
+      institution: 'CEOA Matriculation Higher Secondary School',
+      year: '2020 - 2022',
+    },
   ];
 
   return (
-    <section id="about" className="py-24 bg-blue-100">
-
+    <section id="about" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -44,10 +35,11 @@ const AboutSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-blue-500 mb-4">About Me</h2>
-          <h3 className="text-lg text-gray-700 max-w-2xl mx-auto">
-          Turning imagination into innovation through code.
-          </h3>
+          <span className="section-eyebrow mb-4">About Me</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-3">
+            Turning Imagination Into <span className="text-gradient">Innovation</span>
+          </h2>
+          <p className="text-muted max-w-2xl mx-auto">Through code, curiosity, and craft.</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -59,27 +51,34 @@ const AboutSection = () => {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <User className="text-blue-500" size={28} />
-              <h2 className="text-2xl font-semibold text-gray-900">My Story</h2>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="p-2 rounded-lg bg-primary/10 text-primary-light">
+                <User size={22} />
+              </div>
+              <h3 className="text-2xl font-semibold text-foreground">My Story</h3>
             </div>
 
-            <p className="text-lg text-gray-700 leading-relaxed">
-              I'm a tech enthusiast pursuing B.Tech IT at TCE with a focus on AI, ML, and Web Development. I love building real-world solutions through smart and scalable applications.
+            <p className="text-lg text-muted leading-relaxed">
+              I'm an Associate Software Engineer at Accenture, working on enterprise-scale
+              software solutions with a focus on AI, ML, and Web Development. I love building
+              real-world, user-centric applications that balance smart engineering with clean
+              design.
             </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              From AI-driven learning tools to document QA bots, my work blends innovation with practical impact, shaped by internships, hackathons, and live projects.
+            <p className="text-lg text-muted leading-relaxed">
+              My journey so far, shaped by internships, hackathons, and freelance work, has
+              blended innovation with practical impact and continues to fuel my growth as a
+              developer.
             </p>
-
-
 
             {/* Education Section */}
-            <div className="mt-8">
+            <div className="pt-4">
               <div className="flex items-center gap-3 mb-4">
-                <GraduationCap className="text-blue-500" size={24} />
-                <h3 className="text-xl font-semibold text-gray-900">Education</h3>
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-light">
+                  <GraduationCap size={20} />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground">Education</h3>
               </div>
-              <ul className="space-y-4 pl-2">
+              <ul className="space-y-4 pl-1">
                 {education.map((edu, index) => (
                   <motion.li
                     key={index}
@@ -87,11 +86,11 @@ const AboutSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="border-l-2 border-blue-400 pl-4"
+                    className="border-l-2 border-primary/40 pl-4"
                   >
-                    <p className="text-md font-semibold text-gray-800">{edu.degree}</p>
-                    <p className="text-sm text-gray-600">{edu.institution}</p>
-                    <p className="text-sm text-gray-500">{edu.year}</p>
+                    <p className="text-md font-semibold text-foreground">{edu.degree}</p>
+                    <p className="text-sm text-muted">{edu.institution}</p>
+                    <p className="text-sm text-muted/70">{edu.year}</p>
                   </motion.li>
                 ))}
               </ul>
@@ -105,11 +104,11 @@ const AboutSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex flex-col items-center justify-center text-center p-5 rounded-xl shadow-md bg-gradient-to-r from-blue-500 to-blue-400 text-white"
+                  className="card-surface flex flex-col items-center justify-center text-center p-5 rounded-xl hover:border-border-strong transition-colors"
                 >
-                  <div className="mb-2">{stat.icon}</div>
-                  <p className="text-3xl font-bold">{stat.value}</p>
-                  <p className="text-base font-medium">{stat.label}</p>
+                  <div className="mb-2 text-primary-light">{stat.icon}</div>
+                  <p className="text-3xl font-bold text-foreground">{stat.value}</p>
+                  <p className="text-sm font-medium text-muted">{stat.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -123,11 +122,12 @@ const AboutSection = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="aspect-square rounded-2xl bg-gradient-to-br from-blue-400 to-white p-4 flex items-center justify-center shadow-lg">
-              <div className="w-full h-full rounded-xl overflow-hidden shadow-lg">
+            <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/30 to-accent/20 blur-2xl" />
+            <div className="relative aspect-square rounded-2xl bg-gradient-to-br from-primary/40 to-accent/30 p-[2px] shadow-xl">
+              <div className="w-full h-full rounded-2xl overflow-hidden bg-surface">
                 <img
                   src="/vin.jpeg"
-                  alt="Your Portrait"
+                  alt="Vinoth Kumar T S portrait"
                   className="w-full h-full object-cover"
                 />
               </div>

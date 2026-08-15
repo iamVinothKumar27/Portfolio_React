@@ -23,6 +23,18 @@ const projects = [
   },
 
   {
+    id: "4",
+    title: "Zenith Learning Platform",
+    description:
+      "Built an interactive e-learning platform using React.js and YouTube API with AI-generated course roadmaps, video-based quizzes, and personalized assessments to enhance learning efficiency.",
+    image: "/e_resized.jpg",
+    technologies: ["React.js", "Google Generative AI API", "YouTube API", "Firebase"],
+    liveUrl: "https://zenithlearning.site/",
+    githubUrl: "https://github.com/iamVinothKumar27/E-learning-Frontend",
+    category: "Web App"
+  },
+
+  {
     id: "3",
     title: "AI-Powered Recommendation System",
     description:
@@ -33,19 +45,7 @@ const projects = [
     githubUrl: "https://github.com/iamVinothKumar27/AI_Recommendation",
     category: "Web App"
   },
-  
-  {
-    id: "4",
-    title: "E-Learning Website",
-    description:
-      "Built an interactive e-learning platform using React.js and YouTube API with AI-generated course roadmaps, video-based quizzes, and personalized assessments to enhance learning efficiency.",
-    image: "/e_resized.jpg",
-    technologies: ["React.js", "Google Generative AI API", "YouTube API", "Firebase"],
-    liveUrl: "https://zenith.vinothkumarts.com/",
-    githubUrl: "https://github.com/iamVinothKumar27/E-learning-Frontend",
-    category: "Web App"
-  },
-  
+
   {
     id: "5",
     title: "SHA512 Web Tool – Client-Side Secure Hash Generator",

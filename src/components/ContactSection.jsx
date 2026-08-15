@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import emailjs from 'emailjs-com';
-import { Mail, Linkedin, Github, Instagram } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { Mail, Linkedin, Github } from 'lucide-react';
 
 const ContactSection = () => {
   const formRef = useRef();
@@ -20,30 +20,37 @@ const ContactSection = () => {
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        data,
+        {
+          ...data,
+          to_email: 't.s.vinoth27@gmail.com',
+          reply_to: data.email,
+        },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
       setStatusMessage('✅ Message sent successfully!');
       reset();
     } catch (error) {
+      console.error('EmailJS send failed:', error);
       setStatusMessage('❌ Failed to send message. Please try again later.');
     }
   };
 
   return (
-    <section id="contact" className="py-24 bg-blue-100">
-      <div className="max-w-7xl mx-auto">
+    <section id="contact" className="py-24 bg-surface/40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent">
-            Get In Touch
+          <span className="section-eyebrow mb-4">Contact</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-4">
+            Get In <span className="text-gradient">Touch</span>
           </h2>
-          <p className="text-blue-900 text-xl max-w-2xl mx-auto mt-4">
-          Looking to collaborate or discuss a new idea? Let’s connect.
+          <p className="text-muted text-lg max-w-2xl mx-auto mt-4">
+            Looking to collaborate or discuss a new idea? Let's connect.
           </p>
         </motion.div>
 
@@ -52,10 +59,11 @@ const ContactSection = () => {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <h3 className="text-2xl font-semibold text-blue-700">Let's Connect</h3>
+            <h3 className="text-2xl font-semibold text-foreground">Let's Connect</h3>
             <div className="space-y-4">
               {[
                 {
@@ -76,12 +84,6 @@ const ContactSection = () => {
                   value: '/iamVinothKumar27',
                   href: 'https://github.com/iamVinothKumar27',
                 },
-                {
-                  icon: Instagram,
-                  label: 'Instagram',
-                  value: '@vk._.27.0',
-                  href: 'https://www.instagram.com/vk._.27.05/',
-                },
               ].map((contact, index) => (
                 <motion.a
                   key={index}
@@ -89,12 +91,14 @@ const ContactSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ x: 5 }}
-                  className="flex items-center gap-4 p-5 rounded-xl border border-blue-200 bg-white/80 shadow hover:shadow-md transition-shadow"
+                  className="flex items-center gap-4 p-5 rounded-xl card-surface hover:border-primary/40 transition-colors"
                 >
-                  <contact.icon className="text-blue-600" size={24} />
+                  <div className="p-2.5 rounded-lg bg-primary/10 text-primary-light">
+                    <contact.icon size={20} />
+                  </div>
                   <div>
-                    <div className="font-semibold text-lg text-gray-800">{contact.label}</div>
-                    <div className="text-sm text-gray-600">{contact.value}</div>
+                    <div className="font-semibold text-foreground">{contact.label}</div>
+                    <div className="text-sm text-muted">{contact.value}</div>
                   </div>
                 </motion.a>
               ))}
@@ -105,26 +109,27 @@ const ContactSection = () => {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
             <form
               ref={formRef}
               onSubmit={handleSubmit(onSubmit)}
-              className="bg-white/80 border border-blue-200 rounded-2xl p-8 space-y-6 shadow-xl"
+              className="card-surface rounded-2xl p-8 space-y-6"
             >
               <div>
-                <label className="block text-lg font-medium text-gray-800 mb-2">Name</label>
+                <label className="block text-sm font-medium text-muted mb-2">Name</label>
                 <input
                   type="text"
                   placeholder="Your name"
                   {...register('name', { required: 'Name is required' })}
-                  className="w-full px-5 py-3 border border-blue-100 rounded-lg text-black outline-none focus:ring-2 focus:ring-blue-200"
+                  className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/60 outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition"
                 />
-                {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name.message}</p>}
+                {errors.name && <p className="text-sm text-red-400 mt-1">{errors.name.message}</p>}
               </div>
 
               <div>
-                <label className="block text-lg font-medium text-gray-800 mb-2">Email</label>
+                <label className="block text-sm font-medium text-muted mb-2">Email</label>
                 <input
                   type="email"
                   placeholder="your.email@example.com"
@@ -135,35 +140,34 @@ const ContactSection = () => {
                       message: 'Invalid email format',
                     },
                   })}
-                  className="w-full px-5 py-3 border border-blue-100 rounded-lg text-black outline-none focus:ring-2 focus:ring-blue-200"
+                  className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/60 outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition"
                 />
-                {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>}
+                {errors.email && <p className="text-sm text-red-400 mt-1">{errors.email.message}</p>}
               </div>
 
               <div>
-                <label className="block text-lg font-medium text-gray-800 mb-2">Message</label>
+                <label className="block text-sm font-medium text-muted mb-2">Message</label>
                 <textarea
                   rows="6"
                   placeholder="Tell me about your project or just say hello!"
                   {...register('message', { required: 'Message is required' })}
-                  className="w-full px-5 py-3 border border-blue-100 rounded-lg text-black outline-none focus:ring-2 focus:ring-blue-200 resize-none"
+                  className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground placeholder:text-muted/60 outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition resize-none"
                 />
-                {errors.message && <p className="text-sm text-red-500 mt-1">{errors.message.message}</p>}
+                {errors.message && <p className="text-sm text-red-400 mt-1">{errors.message.message}</p>}
               </div>
 
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="w-full bg-gradient-to-r from-blue-600 to-indigo-500 cursor-pointer text-white px-8 py-3 rounded-full font-medium shadow-md hover:opacity-90 transition disabled:opacity-50"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full bg-gradient-to-r from-primary to-accent cursor-pointer text-white px-8 py-3 rounded-full font-medium shadow-lg shadow-primary/20 hover:shadow-primary/30 transition disabled:opacity-50"
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </motion.button>
 
-
               {statusMessage && (
-                <p className="text-center mt-4 text-sm font-medium text-green-600">{statusMessage}</p>
+                <p className="text-center mt-4 text-sm font-medium text-primary-light">{statusMessage}</p>
               )}
             </form>
           </motion.div>

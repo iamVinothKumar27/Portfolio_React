@@ -1,34 +1,87 @@
 @import "tailwindcss";
 
-html
-{
-  transition: background-color 0.5s ease, color 0.5s ease;
+@theme {
+  --color-background: #05060b;
+  --color-surface: #0b0d16;
+  --color-surface-2: #12151f;
+  --color-border: #ffffff1a;
+  --color-border-strong: #ffffff33;
+  --color-foreground: #e7e9ee;
+  --color-muted: #97a0b3;
+  --color-primary: #6366f1;
+  --color-primary-light: #818cf8;
+  --color-accent: #a855f7;
+  --color-accent-2: #22d3ee;
 
+  --font-display: "Space Grotesk", "Inter", sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "Space Grotesk", sans-serif;
-  background: #0a0a0a;
-  color: #f3f4f6;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  font-family: var(--font-display);
+  background: var(--color-background);
+  color: var(--color-foreground);
 }
 
-h1,h2 {
-  @apply bg-gradient-to-r from-blue-500 to-red-400 bg-clip-text text-center text-blue-400;
+/* Hide the native cursor on desktop in favor of the animated custom cursor */
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  [role="button"] {
+    cursor: none;
+  }
 }
 
-/* Border Customization */
-.border {
-  @apply border-[1px] border-gray-400;
+::selection {
+  background: var(--color-primary);
+  color: #fff;
 }
 
-/* Hover Style for Buttons, Cards, etc. */
-.hover\:border-blue-400:hover {
-  border-color: #ec4899; /* Tailwind pink-500 */
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
 }
 
-/* Optional: Smooth transitions for hover effect */
-.transition-hover {
-  @apply transition-colors duration-300 ease-in-out;
+/* Reusable gradient text for headings/accents */
+.text-gradient {
+  background-image: linear-gradient(90deg, var(--color-primary-light), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Faint dotted grid backdrop used behind hero/section glows */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, #ffffff0a 1px, transparent 1px),
+    linear-gradient(to bottom, #ffffff0a 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Small uppercase pill label used above section headings */
+.section-eyebrow {
+  @apply inline-flex items-center gap-2 rounded-full border border-border bg-surface-2/60 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary-light;
+}
+
+.card-surface {
+  @apply bg-surface-2/60 border border-border backdrop-blur-sm;
 }

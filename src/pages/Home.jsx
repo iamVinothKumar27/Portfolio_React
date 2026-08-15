@@ -1,4 +1,5 @@
 import Navbar from '../components/Navbar';
+import CustomCursor from '../components/CustomCursor';
 import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
 import SkillsSection from '../components/SkillsSection';
@@ -12,6 +13,7 @@ import GitHubSection from "../components/GitHubSection";
 const Home = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <CustomCursor />
       <Navbar />
       <HeroSection />
       <AboutSection />
