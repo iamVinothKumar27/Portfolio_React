@@ -52,7 +52,7 @@ const projects = [
     description:"Built a lightweight, client-side web application to generate SHA-512 hashes from user input text or uploaded files, ensuring complete privacy.",
     image: "/resized_c_re.png",
     technologies: ["Python", "TensorFlow", "Flask", "NLP"],
-    liveUrl: "https://sha256.vinothkumarts.com/",
+    liveUrl: "https://sha256.vinothkumarts.in/",
     githubUrl: "https://github.com/iamVinothKumar27/SHA256",
     category: "Web App"
   },
