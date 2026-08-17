@@ -26,11 +26,23 @@ const projects = [
     id: "4",
     title: "Zenith Learning Platform",
     description:
-      "Built an interactive e-learning platform using React.js and YouTube API with AI-generated course roadmaps, video-based quizzes, and personalized assessments to enhance learning efficiency.",
-    image: "/e_resized.jpg",
-    technologies: ["React.js", "Google Generative AI API", "YouTube API", "Firebase"],
-    liveUrl: "https://zenithlearning.site/",
-    githubUrl: "https://github.com/iamVinothKumar27/E-learning-Frontend",
+      "Full-stack e-learning platform (React + Node/Express/MongoDB) with AI-generated course roadmaps and video-based quizzes, webcam-proctored mock/practice tests, AI mock interviews, an ATS resume ranker with analytics history, and a full admin dashboard for tracking user progress and quiz performance.",
+    image: "/zenith-home.jpg",
+    technologies: ["React.js", "Node.js", "Express", "MongoDB", "Firebase", "Google Gemini AI", "YouTube API", "Recharts"],
+    liveUrl: "https://www.zenithlearning.site/",
+    githubUrl: "https://github.com/iamVinothKumar27/Zenith_FrontendJS",
+    category: "Web App"
+  },
+
+  {
+    id: "7",
+    title: "RoadSense – Automated Road Assessment System",
+    description:
+      "Rebuilt as a full-stack road-defect reporting platform: a React + MUI console with Firebase/Google sign-in for capturing GPS-tagged pothole and crack reports, backed by a Flask + TensorFlow Lite service for real-time detection with confidence scoring and crack-length estimation. Includes a role-based admin dashboard with a live Leaflet map of severe reports and MongoDB-backed history.",
+    image: "/roadsense-home.jpg",
+    technologies: ["React.js", "MUI", "Firebase Auth", "Leaflet", "Flask", "TensorFlow Lite", "MongoDB"],
+    liveUrl: "https://pothole.vinothkumarts.in/",
+    githubUrl: "https://github.com/iamVinothKumar27/Pothole",
     category: "Web App"
   },
 
@@ -64,16 +76,6 @@ const projects = [
     technologies: ["Flask", "LangChain", "Gemini Pro", "FAISS", "JavaScript"],
     liveUrl: "https://docubot.vinothkumarts.com/",
     githubUrl: "https://github.com/iamVinothKumar27/Website-QA-bot",
-    category: "Web App"
-  },
-  {
-    id: "7",
-    title: "Automated Road Assessment System",
-    description: "Real-time pothole and crack detection system using CNN and OpenCV with 93% and 89% accuracy, GPS tagging, heatmaps, and admin dashboard. Deployed on Render with custom domain.",
-    image: "/resized_r.jpg",
-    technologies: ["TensorFlow", "Flask", "OpenCV", "HTML/CSS/JS", "Render"],
-    liveUrl: "https://pothole.vinothkumarts.com/",
-    githubUrl: "https://github.com/iamVinothKumar27/Pothole",
     category: "Web App"
   },
   {

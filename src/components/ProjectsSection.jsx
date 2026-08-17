@@ -1,13 +1,29 @@
 import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Github, ExternalLink, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import projects from '../data/projects';
+
+const DESCRIPTION_PREVIEW_LIMIT = 140;
 
 const ProjectsSection = () => {
   const [selectedCategory, setSelectedCategory] = useState('Web App');
+  const [activeProject, setActiveProject] = useState(null);
   const categories = ['Web App', 'Prototype', 'Mobile App'];
   const sliderRef = useRef(null);
   const isHoveringRef = useRef(false);
+
+  useEffect(() => {
+    isHoveringRef.current = !!activeProject;
+  }, [activeProject]);
+
+  useEffect(() => {
+    if (!activeProject) return;
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setActiveProject(null);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [activeProject]);
 
   const filteredProjects = projects.filter((p) => p.category === selectedCategory);
   const showArrows = filteredProjects.length > 3;
@@ -158,11 +174,21 @@ const ProjectsSection = () => {
               <div className="p-6">
                 <h3 className="text-lg font-semibold text-foreground mb-2">{project.title}</h3>
 
-                <p className="text-sm text-muted mb-4 line-clamp-3 leading-relaxed">
+                <p className="text-sm text-muted mb-2 line-clamp-3 leading-relaxed">
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2">
+                {project.description.length > DESCRIPTION_PREVIEW_LIMIT && (
+                  <button
+                    type="button"
+                    onClick={() => setActiveProject(project)}
+                    className="text-sm font-medium text-primary-light hover:text-primary mb-4 inline-block cursor-pointer"
+                  >
+                    Read more
+                  </button>
+                )}
+
+                <div className="flex flex-wrap gap-2 mt-2">
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
@@ -178,6 +204,88 @@ const ProjectsSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Project Details Modal */}
+      <AnimatePresence>
+        {activeProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4"
+            onClick={() => setActiveProject(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.97 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="card-surface w-full max-w-lg rounded-2xl overflow-hidden max-h-[85vh] overflow-y-auto"
+            >
+              <div className="relative">
+                <img
+                  src={activeProject.image}
+                  alt={activeProject.title}
+                  className="w-full h-56 object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={() => setActiveProject(null)}
+                  aria-label="Close"
+                  className="absolute top-3 right-3 flex items-center justify-center w-9 h-9 rounded-full bg-background/70 text-foreground hover:bg-background/90 cursor-pointer transition-colors"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-foreground mb-3">{activeProject.title}</h3>
+
+                <p className="text-sm text-muted leading-relaxed mb-5">
+                  {activeProject.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {activeProject.technologies.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-3 py-1 bg-surface-2 border border-border text-muted rounded-full text-xs"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-3">
+                  {activeProject.liveUrl && (
+                    <a
+                      href={activeProject.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent text-white px-4 py-2 text-sm font-medium shadow-md shadow-primary/20 hover:opacity-90 transition-opacity"
+                    >
+                      <ExternalLink size={16} />
+                      Live Site
+                    </a>
+                  )}
+                  {activeProject.githubUrl && (
+                    <a
+                      href={activeProject.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-surface-2 border border-border text-foreground px-4 py-2 text-sm font-medium hover:border-border-strong transition-colors"
+                    >
+                      <Github size={16} />
+                      Source Code
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
