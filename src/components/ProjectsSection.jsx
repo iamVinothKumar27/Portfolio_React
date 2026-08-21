@@ -34,10 +34,27 @@ const ProjectsSection = () => {
     }
   }, [selectedCategory]);
 
+  // 1 card per slide on mobile, 2 on tablet, 3 on laptop/desktop — matches the
+  // card widths below (w-[85%] sm:w-[46%] lg:w-[31%]) so each slide moves a
+  // whole page of cards instead of an arbitrary pixel amount.
+  const getSlideStep = () => {
+    const slider = sliderRef.current;
+    if (!slider) return 0;
+    const card = slider.querySelector('[data-project-card]');
+    const cardWidth = card ? card.getBoundingClientRect().width : slider.clientWidth;
+    const gap = parseFloat(getComputedStyle(slider).columnGap) || 32;
+    const cardsPerView = window.matchMedia('(min-width: 1024px)').matches
+      ? 3
+      : window.matchMedia('(min-width: 640px)').matches
+      ? 2
+      : 1;
+    return (cardWidth + gap) * cardsPerView;
+  };
+
   const scrollByPage = (direction) => {
     const slider = sliderRef.current;
     if (!slider) return;
-    slider.scrollBy({ left: direction * slider.clientWidth, behavior: 'smooth' });
+    slider.scrollBy({ left: direction * getSlideStep(), behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -51,7 +68,7 @@ const ProjectsSection = () => {
       if (scrollLeft + clientWidth >= scrollWidth - 10) {
         slider.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
-        slider.scrollBy({ left: clientWidth, behavior: 'smooth' });
+        slider.scrollBy({ left: getSlideStep(), behavior: 'smooth' });
       }
     }, 5000);
 
