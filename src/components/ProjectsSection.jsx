@@ -141,8 +141,8 @@ const ProjectsSection = () => {
                   loading="lazy"
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-background/0 md:group-hover:bg-background/70 transition-colors duration-300 flex items-center justify-center gap-4 z-10">
-                  <div className="opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-4">
+                <div className="absolute inset-0 bg-background/40 md:bg-background/0 md:group-hover:bg-background/70 transition-colors duration-300 flex items-center justify-center gap-4 z-10">
+                  <div className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-4">
                     {project.liveUrl && (
                       <motion.a
                         href={project.liveUrl}

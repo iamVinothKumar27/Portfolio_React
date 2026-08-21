@@ -47,6 +47,18 @@ const projects = [
   },
 
   {
+    id: "6",
+    title: "DocuWeb AI",
+    description:
+      "Rebuilt as a full-stack AI chat platform (React + Node/Express/MongoDB) for querying PDF, DOCX, XLSX, and website content in natural language using Google Gemini. Features Google sign-in, per-user chat history, multi-file/URL ingestion with website scraping via Cheerio, and JWT-based auth.",
+    image: "/docuweb-home.jpg",
+    technologies: ["React.js", "Node.js", "Express", "MongoDB", "Google Gemini AI", "Cheerio", "JWT"],
+    liveUrl: "https://docuweb.vinothkumarts.in/",
+    githubUrl: "https://github.com/iamVinothKumar27/Website-QA-bot",
+    category: "Web App"
+  },
+
+  {
     id: "3",
     title: "AI-Powered Recommendation System",
     description:
@@ -66,16 +78,6 @@ const projects = [
     technologies: ["Python", "TensorFlow", "Flask", "NLP"],
     liveUrl: "https://sha512.vinothkumarts.in/",
     githubUrl: "https://github.com/iamVinothKumar27/SHA256",
-    category: "Web App"
-  },
-  {
-    id: "6",
-    title: "DocuWeb AI",
-    description: "DocuWeb AI is an intelligent chatbot for querying PDF, DOCX, XLSX, and website content using natural language, built using LangChain, FAISS, Gemini Pro, and Flask. Features session saving, file/URL upload, and conversational interaction.",
-    image: "/resized_logo.png",
-    technologies: ["Flask", "LangChain", "Gemini Pro", "FAISS", "JavaScript"],
-    liveUrl: "https://docubot.vinothkumarts.com/",
-    githubUrl: "https://github.com/iamVinothKumar27/Website-QA-bot",
     category: "Web App"
   },
   {
